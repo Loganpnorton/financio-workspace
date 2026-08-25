@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Credential-free Financio portfolio demo using synthetic data.">
+  <title>Financio — Synthetic Portfolio Demo</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #090d18; color: #eef2ff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 15% 0%, #1c3150 0, transparent 38%), #090d18; }
+    .shell { max-width: 1160px; margin: auto; padding: 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .brand { font-size: 22px; font-weight: 800; letter-spacing: -.03em; }
+    .badge { color: #86efac; background: #123322; border: 1px solid #25603d; padding: 7px 11px; border-radius: 999px; font-size: 12px; }
+    .hero { display: grid; grid-template-columns: 1.4fr .8fr; gap: 18px; margin-bottom: 18px; }
+    .card { background: rgba(17,24,39,.88); border: 1px solid #26334b; border-radius: 18px; padding: 22px; box-shadow: 0 16px 40px rgba(0,0,0,.24); }
+    h1 { max-width: 680px; font-size: clamp(30px,5vw,54px); letter-spacing: -.05em; line-height: 1.02; margin: 0 0 14px; }
+    h2 { font-size: 14px; color: #a5b4fc; text-transform: uppercase; letter-spacing: .12em; margin: 0 0 15px; }
+    p { color: #aebbd0; line-height: 1.6; }
+    .total { font-size: 38px; font-weight: 750; margin: 5px 0; }
+    .gain { color: #86efac; }
+    .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 8px; border-bottom: 1px solid #26334b; text-align: left; }
+    th { color: #8290a8; font-size: 12px; text-transform: uppercase; }
+    td:last-child, th:last-child { text-align: right; }
+    .bar { height: 8px; background: #26334b; border-radius: 99px; overflow: hidden; margin-top: 10px; }
+    .bar span { display:block; height:100%; background: linear-gradient(90deg,#818cf8,#22d3ee); }
+    footer { display:flex; justify-content:space-between; gap:20px; color:#8290a8; font-size:13px; margin-top:20px; }
+    a { color:#a5b4fc; }
+    @media (max-width: 760px) { .hero,.grid { grid-template-columns:1fr; } header,footer { align-items:flex-start; flex-direction:column; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header><div class="brand">financio<span style="color:#818cf8">.</span></div><div class="badge">Synthetic data · No login · No API calls</div></header>
+    <section class="hero">
+      <div class="card"><h1>A calmer view of your financial workspace.</h1><p>This read-only portfolio demo shows the product’s information design without accepting uploads or contacting financial services. The full repository contains the tested CSV, quote-fallback, and server-action workflows.</p><a href="https://github.com/Loganpnorton/financio-workspace">Inspect the engineering on GitHub →</a></div>
+      <div class="card"><h2>Demo portfolio</h2><div class="total">$128,450.20</div><div class="gain">+$3,812.40 · 3.06%</div><div class="bar"><span style="width:74%"></span></div><p>74% of the synthetic annual target</p></div>
+    </section>
+    <section class="grid">
+      <div class="card"><h2>Holdings</h2><table><tr><th>Symbol</th><th>Value</th></tr><tr><td>VTI</td><td>$56,240</td></tr><tr><td>VXUS</td><td>$31,710</td></tr><tr><td>BND</td><td>$22,500</td></tr><tr><td>Cash</td><td>$18,000</td></tr></table></div>
+      <div class="card"><h2>Allocation</h2><p>US equity · 44%</p><div class="bar"><span style="width:44%"></span></div><p>International · 25%</p><div class="bar"><span style="width:25%"></span></div><p>Bonds + cash · 31%</p><div class="bar"><span style="width:31%"></span></div></div>
+      <div class="card"><h2>Workflow evidence</h2><p>✓ Quoted CSV parsing</p><p>✓ Explicit schema failures</p><p>✓ Imported-price fallback</p><p>✓ Server-action validation</p><p>✓ Zero production audit findings</p></div>
+    </section>
+    <footer><span>Portfolio demonstration only—not financial advice.</span><span>Built from synthetic values; no data is collected or stored.</span></footer>
+  </main>
+</body>
+</html>

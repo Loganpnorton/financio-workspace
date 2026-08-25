@@ -6,6 +6,8 @@ Financio is a responsive financial workspace for reviewing holdings, organizing 
 
 [Watch the 75-second credential-free demo](docs/demo.mp4)
 
+[Open the hosted synthetic demo](https://loganpnorton.github.io/financio-workspace/)
+
 ## Highlights
 
 - Drag-and-drop dashboard widgets with saved browser preferences
@@ -60,4 +62,4 @@ npm audit --omit=dev
 
 The Genkit dependency chain was removed in favor of native `fetch`; the current production audit reports zero known vulnerabilities.
 
-The account balances shown before an upload are demonstration data. Do not upload financial records you are not authorized to process.
+The hosted demo is a deliberately read-only static proof surface: it makes no API calls and collects no data. The account balances shown before an upload are demonstration data. Do not upload financial records you are not authorized to process.
