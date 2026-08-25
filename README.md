@@ -4,6 +4,8 @@ Financio is a responsive financial workspace for reviewing holdings, organizing 
 
 ![Financio finances workspace](docs/financio-demo.png)
 
+[Watch the 75-second credential-free demo](docs/demo.mp4)
+
 ## Highlights
 
 - Drag-and-drop dashboard widgets with saved browser preferences
