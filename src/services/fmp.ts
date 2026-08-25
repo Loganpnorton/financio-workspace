@@ -1,6 +1,4 @@
 
-import fetch from 'node-fetch';
-
 const BASE_URL = 'https://financialmodelingprep.com/api/v3';
 
 interface FmpQuote {
@@ -33,20 +31,23 @@ export async function getLatestStockPrice(symbol: string): Promise<number | null
   return prices[symbol] ?? null;
 }
 
-export async function getLatestStockPrices(symbols: string[]): Promise<Record<string, number | null>> {
+export async function getLatestStockPrices(
+  symbols: string[],
+  fetcher: typeof fetch = fetch,
+): Promise<Record<string, number | null>> {
+  const normalizedSymbols = [...new Set(symbols.map((symbol) => symbol.trim().toUpperCase()).filter(Boolean))];
   const apiKey = process.env.FMP_API_KEY;
-  if (!apiKey || symbols.length === 0) {
-    return {};
-  }
+  if (normalizedSymbols.length === 0) return {};
+  if (!apiKey) return Object.fromEntries(normalizedSymbols.map((symbol) => [symbol, null]));
 
-  const url = `${BASE_URL}/quote/${symbols.join(',')}?apikey=${apiKey}`;
+  const url = `${BASE_URL}/quote/${normalizedSymbols.join(',')}?apikey=${apiKey}`;
   const prices: Record<string, number | null> = {};
 
   try {
-    const response = await fetch(url);
+    const response = await fetcher(url);
     if (!response.ok) {
       console.error(`FMP quote request failed with status ${response.status}.`);
-      return Object.fromEntries(symbols.map((symbol) => [symbol, null]));
+      return Object.fromEntries(normalizedSymbols.map((symbol) => [symbol, null]));
     }
 
     const data = (await response.json()) as FmpQuote[] | { 'Error Message'?: string };
@@ -58,12 +59,12 @@ export async function getLatestStockPrices(symbols: string[]): Promise<Record<st
       console.error('FMP returned an error response.');
     }
 
-    for (const symbol of symbols) {
+    for (const symbol of normalizedSymbols) {
       prices[symbol] ??= null;
     }
   } catch (error) {
     console.error('FMP quote request failed.', error);
-    return Object.fromEntries(symbols.map((symbol) => [symbol, null]));
+    return Object.fromEntries(normalizedSymbols.map((symbol) => [symbol, null]));
   }
 
   return prices;
